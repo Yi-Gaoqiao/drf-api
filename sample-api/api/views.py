@@ -3,11 +3,13 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import viewsets, generics
 from django.contrib.auth.models import User
 from api import models, serializers
+from api.ownpermissions import ProfilePermissions
 
 
 class UserViewSet(viewsets.ModelViewSet):
     """Handles CRUD"""
-    permission_classes = (AllowAny,)
+    # permission_classes = (AllowAny,)
+    permission_classes = (ProfilePermissions,)
     serializer_class = serializers.UserSerializer
     queryset = User.objects.all()
 
